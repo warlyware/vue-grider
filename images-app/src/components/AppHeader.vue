@@ -1,20 +1,27 @@
 <template>
   <div class="ui secondary pointing menu">
-    <a href="/"
-    class="active item">
+    <a href="/" class="active item">
       Imagerie
     </a>
     <div class="right menu">
-      <a class="item">
-        Logout
+      <a href="#"
+      @click="login"
+      class="ui item">
+        Login
       </a>
+      <!-- <a class="item">
+        Logout
+      </a> -->
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
-  name: 'AppHeader'
+  name: 'AppHeader',
+  methods: mapActions(['login'])
 }
 </script>
 
