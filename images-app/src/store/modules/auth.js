@@ -1,7 +1,8 @@
 import api from '../../api/imgur';
+import qs from 'qs';
 
 const state = {
-  token: null
+  token: window.localStorage.getItem('imgur_token')
 }
 
 const getters = {
@@ -15,12 +16,17 @@ const mutations = {
 }
 
 const actions = {
+  login: () => {
+    api.login();
+  },
+  finalizeLogin: ({ commit }, hash) => {
+    const { access_token } = qs.parse(hash.replace('#', ''));
+    window.localStorage.setItem('imgur_token', access_token);
+    commit('setToken', access_token);
+  },
   logout: ({ commit }) => {
     commit('setToken', null);
   },
-  login: () => {
-    api.login()
-  }
 }
 
 export default {
