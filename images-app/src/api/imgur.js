@@ -21,7 +21,7 @@ export default {
     });
   },
   upload: (images, token) => {
-    Array.from(images).map(image => {
+    const requests = Array.from(images).map(image => {
       const formData = new FormData();
       formData.append('image', image);
 
@@ -31,5 +31,7 @@ export default {
         }
       });
     });
+
+    return Promise.all(requests);
   }
 }
